@@ -16,6 +16,10 @@ def posts(request):
             }
         )
     return JsonResponse(response, safe=False)
+
+def post_list(request):
+    posts = Post.objects.filter().order_by('-datatime')
+    return render(request, 'api/index.html', {'posts':posts})
 # Create your views here.
 #def post_list(request):
     #return render(request, 'blog/post_list.html', {})

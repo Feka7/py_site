@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Hello Bulma!</title>
+      <link rel="stylesheet" href="{% static 'node_modules/bulma/css/bulma.min.css' %}">
+    </head>
+    <body>
+      <a class="button is-primary">
+        Button
+      </a>
+        <div>
+            <h1><a href="">Django Girls Blog</a></h1>
+        </div>
+        {% for post in posts %}
+          <div>
+            <p>New post</p>
+            <p>author: {{post.user}}
+            <p>published: {{ post.published_date }}</p>
+            <p>{{ post.hash }}</p>
+            <p>{{ post.content}}</p>
+          </div>
+        {% endfor %}
+
+    </body>
+</html>

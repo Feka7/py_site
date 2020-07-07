@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <head>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lista posts</title>
+        <link rel="stylesheet" href="{% static 'node_modules/bulma/css/bulma.min.css' %}">
+      </head>
+    </head>
+    <body>
+      <div class="page-header">
+          <a href="{% url 'post_new' %}" class="top-menu">ADD</a>
+          <a href="{% url 'user_new' %}" class="top-menu">add-user</a>
+          <a href="{% url 'login' %}" class="top-menu">LOG</a>
+          {% if user.is_authenticated %}
+          <p>Ciao {{request.user.username}}!</p>
+          <a href="{% url 'logout' %}" class="top-menu">LOGOUT</a>
+          {% endif %}
+          <h1><a href="/">Django Girls Blog</a></h1>
+      </div>
+      <div class="content container">
+          {% if messages %}
+             <ul class="messages">
+             {% for message in messages %}
+               <li class="{{ message.tags }}">{{ message }}</li>
+             {% endfor %}
+             </ul>
+          {% endif %}
+          <div class="row">
+              <div class="col-md-8">
+              {% block content %}
+              {% endblock %}
+              </div>
+          </div>
+      </div>
+    </body>
+</html>

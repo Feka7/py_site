@@ -1,3 +1,4 @@
+'''
 from web3 import Web3
 
 
@@ -7,3 +8,4 @@ privateKey = account.privateKey.hex()
 address = account.address
 
 print(f"Your address: {address}\nYour key: {privateKey}")
+'''

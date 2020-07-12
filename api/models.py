@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from api.utils import sendTransaction
+'''from api.utils import sendTransaction'''
 import hashlib
 from django.utils import timezone
 
@@ -23,5 +23,5 @@ class Post(models.Model):
 
     def writeOnChain(self):
         self.hash = hashlib.sha256(self.content.encode('utf-8')).hexdigest()
-        self.txId = sendTransaction(self.hash)
+        '''self.txId = sendTransaction(self.hash)'''
         self.save()

@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+     <h2>Report</h2>
+     <form method="GET" class="get-form">{% csrf_token %}
+         {{ form.as_p }}
+         <button type="submit" class="save btn btn-default">Enter</button>
+     </form>
+     {% if occ >= 0 %}
+        <p> The number of occurences is {{ occ }} </p>
+     {% endif %}
+{% endblock %}

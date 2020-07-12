@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 
+
 class Articolo(models.Model):
      author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
      title = models.CharField(max_length=200)
@@ -16,3 +17,7 @@ class Articolo(models.Model):
 
      def __str__(self):
          return self.title
+
+
+class Simple_str(models.Model):
+    key = models.CharField(max_length=200)

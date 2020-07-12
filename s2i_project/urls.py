@@ -20,8 +20,6 @@ from api import views as views1
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('posts/', views1.posts),
-    path('blog/', views1.post_list),
+    path('api/', views1.posts),
     path('', include('blog.urls'))
-    #url(r'', include('.urls'))
 ]

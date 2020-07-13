@@ -25,7 +25,7 @@ SECRET_KEY = 'cuwr2tg5+uq0fr=jgi_d$z3_h3xh!_jdy4s%)+tr1z*klno_%$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://feka7.pythonanywhere.com/']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'feka7.pythonanywhere.com']
 
 
 # Application definition

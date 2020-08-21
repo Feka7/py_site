@@ -11,10 +11,13 @@ from .thread import *
 
 startThreadTask();
 
+#per eseguire operazioni sulle liste occorre connettersi manualmente a Redis
 conn = get_redis_connection("default")
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
+#la lista dei post viene caricata dalla cache se presente
+#viene utilizzata la connessione definita in settings.py
 def post_list_cache(request):
 
     if 'articoli' in cache:
@@ -28,6 +31,8 @@ def post_list_cache(request):
         print('no ok')
         return render(request, 'blog/post_list.html', {'posts': posts})
 
+#in questa pagina vengono visualizzate le ultime azioni eseguite dagli utenti
+#sul sito. Le azioni vengono aggiunte su views.py
 def news(request):
     if 'news' in conn:
         news = conn.lrange('news', 0, -1)

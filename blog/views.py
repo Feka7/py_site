@@ -9,6 +9,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.http import JsonResponse
+from django.core.cache import cache
+import redis
+from django_redis import get_redis_connection
+
+conn = get_redis_connection("default")
+HOUR=3600
 
 def get_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -34,6 +40,8 @@ def post_new(request):
                 post.author = request.user
                 post.published_date = timezone.now()
                 post.save()
+                #new operation!!!
+                conn.lpush('news',str(timezone.now())+": "+pos.author+' ha pubblicato un post')
                 return redirect('post_detail', pk=post.pk)
             else:
                 messages.error(request, "Invalid word ---> hack.")
@@ -62,6 +70,8 @@ def log(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                #new operation!!!
+                conn.lpush('news',str(timezone.now())+f": {username} è online!")
                 messages.info(request, f"You are now logged in as {username}")
                 ip_now = get_ip(request)
                 if str(ip_now) != str(user.last_name):
@@ -77,6 +87,8 @@ def log(request):
     return render(request, "blog/login.html", {"form":form})
 
 def logout_request(request):
+    #new operation!!!
+    conn.lpush('news',str(timezone.now())+": "+request.user.username+" si è disconnesso!")
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect("../")

@@ -1,0 +1,7 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+     {% for new in news %}
+             <p>{{ new }}</p>
+     {% endfor %}
+ {% endblock %}

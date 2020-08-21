@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views, views_cache
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),
@@ -11,5 +11,7 @@ urlpatterns = [
     path('last_hour/', views.post_last_hour, name='last_hour'),
     path('report/', views.report, name='report'),
     path('admin_view/', views.admin_view, name='admin_view'),
-    path('utente/<int:pk>/', views.utente, name='utente')
+    path('utente/<int:pk>/', views.utente, name='utente'),
+    path('cache/', views_cache.post_list_cache, name="post_list_cache"),
+    path('news/', views_cache.news, name="news")
 ]

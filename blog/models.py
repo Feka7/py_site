@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+import threading
 
 
 class Articolo(models.Model):
@@ -21,3 +21,8 @@ class Articolo(models.Model):
 
 class Simple_str(models.Model):
     key = models.CharField(max_length=200)
+
+
+class ThreadTask(models.Model):
+    task = models.CharField(max_length=30, blank=True, null=True)
+    is_done = models.BooleanField(blank=False,default=False)

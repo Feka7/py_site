@@ -23,9 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'cuwr2tg5+uq0fr=jgi_d$z3_h3xh!_jdy4s%)+tr1z*klno_%$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'feka7.pythonanywhere.com']
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -123,5 +122,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/home/Feka7/feka7.pythonanywhere.com/static"
-'''STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]'''
+#STATIC_ROOT = "/home/Feka7/feka7.pythonanywhere.com/static"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
